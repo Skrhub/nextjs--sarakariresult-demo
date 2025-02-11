@@ -8,7 +8,7 @@ export default async function Home() {
     const result = await fetch(process.env.URL + '/api/post/get', {
       method: 'POST',
       body: JSON.stringify({ limit: 9, order: 'desc' }),
-      cache: 'no-store',
+      next: { revalidate: 60 },
     });
     const data = await result.json();
     posts = data.posts;
