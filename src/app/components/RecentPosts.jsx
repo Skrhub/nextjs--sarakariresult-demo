@@ -5,7 +5,7 @@ export default async function RecentPosts({limit}) {
     const result = await fetch(process.env.URL + '/api/post/get', {
       method: 'POST',
       body: JSON.stringify({ limit: limit, order: 'desc' }),
-      cache: 'no-store',
+      next: { revalidate: 60 },
     });
     const data = await result.json();
     posts = data.posts;
